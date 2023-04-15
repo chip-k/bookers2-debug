@@ -2,15 +2,27 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   
-  root :to =>"homes#top"
-  get "home/about"=>"homes#about"
+  root :to => "homes#top"
+  get "home/about" => "homes#about"
 
   resources :books, only: [:index, :show, :edit, :create, :destroy, :update] do
     resource :favorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
   
-  resources :users, only: [:index, :show, :edit, :update]
+  post 'follow/:id' => 'relationships#follow', as: 'follow'
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+  
+  
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :following, :followers
+    end
+  end
+  
+  #get "users/index_following" => "users#followings"
+  #get "users/index_followers" => "users#followers"
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 end
