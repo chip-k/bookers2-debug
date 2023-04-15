@@ -20,8 +20,7 @@ Rails.application.routes.draw do
     end
   end
   
-  #get "users/index_following" => "users#followings"
-  #get "users/index_followers" => "users#followers"
+  get "search" => "searches#search"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
