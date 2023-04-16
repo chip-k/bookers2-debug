@@ -29,11 +29,12 @@
             <% end %>
         </tr>
       </table>
-      <%= render "comment", book: @book %>
-      <%= form_with model: [@book, @book_comment], local: false do |f| %>
-        <%= f.text_area :comment, class: "form-control pb-5" %>
-        <%= f.submit "送信", class: "mt-2" %>
-      <% end %>
+      <div id="comments_area">
+        <%= render partial: 'book_comments/comment', locals: {book: @book} %>
+      </div>
+      <div id="new_comment">
+        <%= render partial: 'book_comments/form', locals: {book: @book, book_comment: @book_comment} %>
+      </div>
     </div>
   </div>
 </div>
