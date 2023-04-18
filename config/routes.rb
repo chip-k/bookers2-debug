@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   
-  
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :following, :followers
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
   end
   
   get "search" => "searches#search"
+  
+  #get 'chat/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create, :show]
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

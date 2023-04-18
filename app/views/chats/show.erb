@@ -1,0 +1,22 @@
+<div class="container">
+    <h2><b><%= @user.name %> さんとのチャット</b></h2>
+    <div class="row">
+      <table>
+        <tr>
+          <td class="message_table">
+            <% @chats.each do |chat| %>
+              <%= chat.message %><br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <%= form_with model: @chat, local: false do |f| %>
+            <%= f.text_field :message %>
+            <%= f.hidden_field :room_id %>
+          <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>

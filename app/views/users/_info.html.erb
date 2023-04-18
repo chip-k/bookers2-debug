@@ -26,6 +26,9 @@
   <% else %>
     <% if current_user.following?(user) %>
       <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-info mt-n4" %>
+      <% if user.following?(current_user) %>
+        <%= link_to 'chatを始める', chat_path(user.id), class: "mt-n3 ml-3" %>
+      <% end %>
     <% else %>
       <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-success mt-n4" %>
     <% end %>
