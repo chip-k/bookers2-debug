@@ -1,22 +1,27 @@
 <div class="container">
-    <h2><b><%= @user.name %> さんとのチャット</b></h2>
-    <div class="row">
-      <table>
-        <tr>
-          <td class="message_table">
-            <% @chats.each do |chat| %>
-              <%= chat.message %><br>
+  <h2><b><%= @user.name %> さんとのチャット</b></h2>
+  <div class="row">
+    <table>
+      <tr>
+        <td class="message_table">
+          <% @chats.each do |chat| %>
+            <% if chat.user_id == current_user.id %>
+              <p style="text-align: right;"><%= chat.message %></p>
+            <% else %>
+              <p style="text-align: left;"><%= chat.message %></p>
             <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          <%= form_with model: @chat, local: false do |f| %>
-            <%= f.text_field :message %>
-            <%= f.hidden_field :room_id %>
           <% end %>
-          </td>
-        </tr>
-      </table>
-    </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+  <div class="errors">
+    <%= render 'layouts/errors', obj: @chat %>
+  </div>
+  <%= form_with model: @chat, local: false do |f| %>
+    <span class="mx-auto"><%= f.text_field :message %></span>
+    <%= f.hidden_field :room_id %>
+  <% end %>
+  </div>
 </div>

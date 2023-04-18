@@ -18,7 +18,7 @@ class ChatsController < ApplicationController
   
   def create
     @chat = Chat.new(chat_params)
-    @chat.save
+    render :validater unless @chat.save
   end
   
   private
