@@ -23,6 +23,9 @@
           <td id="comments_count">
             <%= render partial: 'book_comments/comments_count', locals: {book: @book} %>
           </td>
+          <td>
+            <span>閲覧数: <%= @book.impressions_count %></span>
+          </td>
             <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
