@@ -1,14 +1,33 @@
 <table class='table'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>紹介文</th>
+      <th>メンバー</th>
+    </tr>
+  </thead>
   <tbody>
-      <tr>
-        <td><%= image_tag group.get_group_image, size:'50x50' %></td>
-        <td><%= link_to group.name, group_path(group) %></td>
-        <td><%= group.introduction %></td>
-        <td>
-          <% if current_user.id == group.owner_id %>
-            <%= link_to 'Edit', edit_group_path(group), class: 'btn btn-success' %>
+    <tr>
+      <td><%= image_tag group.get_group_image, size:'50x50' %></td>
+      <td><%= link_to group.name, group_path(group) %></td>
+      <td><%= group.introduction %></td>
+      <td>
+        <% group.users.each do |member| %>
+          <%= member.name %><br>
+        <% end %>
+      </td>
+      <td>
+        <% if current_user.id != group.owner_id %>
+          <% if group.users.include?(current_user) %>
+            <%= link_to 'Leave this group', group_path, method: :delete, class: 'btn btn-danger btn-sm' %>
+          <% else %>
+            <%= link_to 'Join this group', group_join_path(group), class: 'btn btn-success btn-sm' %>
           <% end %>
-        </td>
-      </tr>
+        <% else %>
+          <%= link_to 'Edit', edit_group_path(group), class: 'btn btn-success' %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
