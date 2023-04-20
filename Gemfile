@@ -56,6 +56,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'jquery-rails'
-gem 'impressionist'
 gem 'dotenv-rails'
+gem 'impressionist'
 gem 'net-smtp'

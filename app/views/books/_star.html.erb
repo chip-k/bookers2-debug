@@ -1,0 +1,14 @@
+<span>Rate</span>
+<span id="star"></span>
+<script>
+$('#star').empty();
+var elem = document.querySelector('#star');
+var opt = {
+  size     : 36,
+  starOff: '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  scoreName: 'book[star]',
+  half: false,
+};
+raty(elem,opt);
+</script>

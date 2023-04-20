@@ -52,9 +52,10 @@ ActiveRecord::Schema.define(version: 2023_04_19_072555) do
     t.string "title"
     t.text "body"
     t.integer "user_id"
+    t.integer "impressions_count", default: 0
+    t.string "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "impressions_count", default: 0
   end
 
   create_table "chats", force: :cascade do |t|
