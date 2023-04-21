@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_04_19_072555) do
     t.integer "user_id"
     t.integer "impressions_count", default: 0
     t.string "star"
+    t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

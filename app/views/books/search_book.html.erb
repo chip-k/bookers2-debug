@@ -1,24 +1,5 @@
 <table class="table">
-  <% if @range == "User" %>
-  <h2>Users search for "<%= params[:word] %>"</h2>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Introduction</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
-          <td><%= link_to user.name, user_path(user) %></td>
-          <td><%= user.introduction %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-  <h2>Books search for "<%= params[:word] %>"</h2>
+  <h2>Books search for "<%= params[:search_word] %>"</h2>
     <thead>
       <tr>
         <th></th>
@@ -33,7 +14,7 @@
           <td><%= image_tag book.user.get_profile_image, size:'50x50' %></td>
           <td><%= link_to book.title, book_path(book) %></td>
           <td><%= book.body %></td>
-          <td><%= link_to book.tag, search_book_path(search_: book.tag) %></td>
+          <td><%= link_to book.tag, search_book_path(search_word: book.tag) %></td>
           <td id="favorite_btn_<%= book.id %>">
             <%= render 'favorites/favorite-btn', book: book %>
           </td>
@@ -49,5 +30,4 @@
         </tr>
       <% end %>
     </tbody>
-  <% end %>
-</table>
+  </table>

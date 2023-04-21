@@ -6,6 +6,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :impressions_count, default: 0
       t.string :star
+      t.string :tag
       t.timestamps
     end
   end
