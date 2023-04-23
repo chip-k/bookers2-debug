@@ -12,6 +12,13 @@
       <%= render 'number_of_posts', today_book: @today_book, yesterday_book: @yesterday_book, this_week: @this_week, last_week: @last_week %>
       <%= render 'post_of_the_week', books: @books, today_book: @today_book, yesterday_book: @yesterday_book %>
       <%= render 'post_chart', books: @books, today_book: @today_book, yesterday_book: @yesterday_book %>
+      <%= form_with url: user_date_search_path(@user), method: :get, local: false do |f| %>
+        <%= f.date_field :created_at %>
+        <%= f.submit '検索', class: 'btn btn-primary' %>
+      <% end %>
+      <div id="search_result">
+        <%= render 'date_search', books: @books %>
+      </div>
     </div>
   </div>
 </div>

@@ -20,6 +20,7 @@ class Book < ApplicationRecord
   scope :created_this_week, -> { where(created_at: Time.zone.now.all_week) }
   scope :created_last_week, -> { where(created_at: 1.week.ago.all_week ) }
   
+  
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

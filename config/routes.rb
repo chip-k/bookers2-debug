@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   
   resources :users, only: [:index, :show, :edit, :update] do
+    get "date_search" => "users#date_search"
     member do
       get :following, :followers
     end
+    
   end
   
   get "search" => "searches#search"

@@ -38,6 +38,16 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     @user = user.follower_user
   end
+  
+  def date_search
+    @user = User.find(params[:user_id])
+    if params[:created_at] == ""
+      @books = "日付を選択してください"
+    else
+      create_at = params[:created_at]
+      @books = @user.books.where(['created_at LIKE ? ', "#{create_at}%"])
+    end
+  end
 
   private
 
@@ -51,4 +61,5 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+  
 end
